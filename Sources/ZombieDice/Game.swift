@@ -50,18 +50,17 @@ class Game{
 
             turnScore+=sides.filter({$0==DiceSide.Brain}).count;
             healthPoints-=sides.filter({$0==DiceSide.Gun}).count;
+
             if(healthPoints==0){
                 print("You died. No points from this turn.");
                 turnScore = 0;
-            }
-            playerScores[player] = (playerScores[player] ?? 0) + turnScore;
-            if(playerScores[player]==13){
                 return;
             }
             print("\(healthPoints) HP \(turnScore) turn score") 
             print("Do you want to draw 3 more dice?(yes/no)")
             anotherRoll = (readLine() == "yes"); 
         } while anotherRoll
+        playerScores[player] = (playerScores[player] ?? 0) + turnScore;
     }
     //printing dice values
     func printThrownDice(dice: [Dice],sides: [DiceSide]){
