@@ -8,3 +8,7 @@ repeat {
     print("Do you want to play again?(yes/no)")
     playAgain = (readLine()=="yes");
 } while playAgain
+
+func clearScreen(){
+    print("\u{001B}[2J");
+}

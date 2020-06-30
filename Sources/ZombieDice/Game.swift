@@ -32,6 +32,7 @@ class Game{
                     print(getScoreTable());
                     return;
                 }
+                clearScreen();
             }
         }
         
@@ -74,7 +75,7 @@ class Game{
         for (index, side) in sides.enumerated() {
             //Doing multiple checks since a reroll could still yield footsteps
             while(sides[index]==(DiceSide.Footsteps)){
-                print("Do you want to reroll dice number \(index)")
+                print("Do you want to reroll dice number \(index)?(yes/no)")
                 if(readLine()=="yes"){
                     sides[index] = dice[index].throwDice();
                     printThrownDice(dice:dice, sides: sides);
