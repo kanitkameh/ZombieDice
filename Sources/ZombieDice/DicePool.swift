@@ -1,7 +1,7 @@
-class DicePool{
+public class DicePool{
     var dices: [Dice];
     //Creating dice pool of 3 red, 4 yellow and 6 green dices
-    init(){
+    public init(){
         dices = [];
         let reds = Array(repeating: Dice.Red, count: 3)
         let yellows = Array(repeating: Dice.Yellow, count: 4)
@@ -21,8 +21,9 @@ class DicePool{
         return result;
     }
     //We draw 3 dices in our game
-    func drawDices(int count) -> [Dice?] {
+    func drawDices(count: Int) -> [Dice?] {
         var result: [Dice?];
+        result = [];
         for _ in 1...count {
             result.append(drawDice());
         }
