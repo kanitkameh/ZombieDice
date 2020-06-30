@@ -27,4 +27,7 @@ enum Dice{
             return [DiceSide.Brains,DiceSide.Brains,DiceSide.Brains,DiceSide.Footsteps,DiceSide.Footsteps,DiceSide.Gun]
         }
     }
+    func throwDice() -> DiceSide {
+        return self.getDiceSides().randomElement()!;
+    }
 }
