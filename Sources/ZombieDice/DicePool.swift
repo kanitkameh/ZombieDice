@@ -11,7 +11,7 @@ public class DicePool{
         dices+=(greens);
     }
     //Draws a dice if there is one in the dice pool
-    private func drawDice() -> Dice? {
+    private func drawDie() -> Dice? {
         if(dices.isEmpty){
             return nil;
         }
@@ -21,7 +21,7 @@ public class DicePool{
         return result;
     }
     //We draw 3 dices in our game
-    func drawDices(count: Int) -> [Dice?] {
+    func drawDice(count: Int) -> [Dice?] {
         var result: [Dice?];
         result = [];
         for _ in 1...count {
