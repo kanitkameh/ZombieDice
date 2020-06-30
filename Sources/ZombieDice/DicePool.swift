@@ -25,7 +25,7 @@ public class DicePool{
         var result: [Dice?];
         result = [];
         for _ in 1...count {
-            result.append(drawDice());
+            result.append(drawDie());
         }
         return result;
     }
