@@ -30,6 +30,7 @@ class Game{
                 if(playerScores[player] ?? 0 >= 13){
                     print("\(player) has won the game")
                     print(getScoreTable());
+                    return;
                 }
             }
         }
