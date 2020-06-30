@@ -21,11 +21,13 @@ public class DicePool{
         return result;
     }
     //We draw 3 dices in our game
-    func drawDice(count: Int) -> [Dice?] {
-        var result: [Dice?];
+    func drawDice(upToCount: Int) -> [Dice] {
+        var result: [Dice];
         result = [];
-        for _ in 1...count {
-            result.append(drawDie());
+        for _ in 1...upToCount {
+            if let die = drawDie() {
+                result.append(die);
+            }
         }
         return result;
     }
