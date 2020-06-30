@@ -3,6 +3,8 @@ import class Foundation.Bundle
 
 final class ZombieDiceTests: XCTestCase {
     func testExample() throws {
+        //We don't need to test the example tests
+        return;
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
