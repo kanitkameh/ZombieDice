@@ -11,13 +11,21 @@ class DicePool{
         dices+=(greens);
     }
     //Draws a dice if there is one in the dice pool
-    func drawDice() -> Dice? {
+    private func drawDice() -> Dice? {
         if(dices.isEmpty){
             return nil;
         }
         let position = Int.random(in: 0..<dices.count)
         let result: Dice? = dices[position];
         dices.remove(at: position);
+        return result;
+    }
+    //We draw 3 dices in our game
+    func drawDices(int count) -> [Dice?] {
+        var result: [Dice?];
+        for _ in 1...count {
+            result.append(drawDice());
+        }
         return result;
     }
 }
