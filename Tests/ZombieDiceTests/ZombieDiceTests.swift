@@ -1,8 +1,10 @@
 import XCTest
 import class Foundation.Bundle
 
+@testable import ZombieDice
 final class ZombieDiceTests: XCTestCase {
     func testExample() throws {
+        let x = DicePool();
         //We don't need to test the example tests
         return;
         // This is an example of a functional test case.
