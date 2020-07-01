@@ -1,3 +1,4 @@
+import Foundation
 class Game{
     var playerNames:[String];
     var playerScores:[String:Int];
@@ -32,6 +33,8 @@ class Game{
                     print(getScoreTable());
                     return;
                 }
+                print("Press Enter to continue")
+                readLine();
                 clearScreen();
             }
         }
