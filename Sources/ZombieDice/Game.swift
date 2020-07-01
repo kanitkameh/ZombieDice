@@ -41,61 +41,19 @@ class Game{
         
     }
     func playerTurn(player: String){
-        var turnScore = 0;
-        var healthPoints = 3;
+        var turn : Turn = Turn();
         print(getScoreTable());
-        let pool = DicePool();
         var anotherRoll : Bool;
         repeat {
-            var dice = pool.drawDice(upToCount:3);
-            var sides = dice.map{$0.throwDice()}
-
-            printThrownDice(dice:dice, sides: sides);
-            print("\(healthPoints-sides.filter({$0==DiceSide.Gun}).count) HP");
-            print("\(turnScore+sides.filter({$0==DiceSide.Brain}).count) turn score") 
-
-            rerollDicesWithFootsteps(dice: dice, sides: &sides, healthPoints: healthPoints, turnScore: turnScore);
-
-            turnScore+=sides.filter({$0==DiceSide.Brain}).count;
-            healthPoints-=sides.filter({$0==DiceSide.Gun}).count;
-
-            if(healthPoints==0){
+            turn.drawAndRoll(diceCount: 3);
+            turn.rerollDicesWithFootsteps();
+            if(turn.healthPoints==0){
                 print("You died. No points from this turn.");
-                turnScore = 0;
                 return;
             }
             print("Do you want to draw 3 more dice?(yes/no)")
             anotherRoll = (readLine() == "yes"); 
-        } while (anotherRoll && !pool.isEmpty())
-        playerScores[player] = (playerScores[player] ?? 0) + turnScore;
-    }
-    //printing dice values
-    func printThrownDice(dice: [Dice],sides: [DiceSide]){
-        for (index, side) in sides.enumerated() {
-            print("\(index). \(dice[index]) \(side)") 
-        }
-    }
-    func rerollDicesWithFootsteps(dice: [Dice],sides: inout [DiceSide], healthPoints: Int, turnScore: Int){
-        while(sides.contains(DiceSide.Footsteps)){
-            //Check if the player has died
-            if((healthPoints-sides.filter({$0==DiceSide.Gun}).count)==0){
-                return;
-            } 
-            print("Do you want to reroll dice?(yes/no)")
-            if(readLine()=="yes"){
-                print("Which index?");
-                var index = Int(readLine() ?? "-1") ?? -1;
-                if(index == -1 || sides[index] != DiceSide.Footsteps){
-                    print("This index isn't footsteps and can't be rerolled");
-                    continue;
-                }
-                sides[index] = dice[index].throwDice();
-                printThrownDice(dice:dice, sides: sides);
-                print("\(healthPoints-sides.filter({$0==DiceSide.Gun}).count) HP");
-                print("\(turnScore+sides.filter({$0==DiceSide.Brain}).count) turn score") 
-            } else {
-                break;
-            }
-        }
+        } while (anotherRoll && !turn.pool.isEmpty())
+        playerScores[player] = (playerScores[player] ?? 0) + turn.turnScore;
     }
 }
