@@ -31,4 +31,7 @@ public class DicePool{
         }
         return result;
     }
+    func isEmpty() -> Bool {
+        return dices.isEmpty;
+    }
 }

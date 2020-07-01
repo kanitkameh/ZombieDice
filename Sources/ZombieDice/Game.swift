@@ -66,7 +66,7 @@ class Game{
             }
             print("Do you want to draw 3 more dice?(yes/no)")
             anotherRoll = (readLine() == "yes"); 
-        } while anotherRoll
+        } while (anotherRoll && !pool.isEmpty())
         playerScores[player] = (playerScores[player] ?? 0) + turnScore;
     }
     //printing dice values
