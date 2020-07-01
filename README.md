@@ -1,3 +1,3 @@
 # ZombieDice
 
-A description of this package.
+The board game zombie dice implemented in Swift.
