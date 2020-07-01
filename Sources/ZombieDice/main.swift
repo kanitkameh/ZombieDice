@@ -8,7 +8,7 @@ repeat {
     print("Do you want to play again?(yes/no)")
     playAgain = (readLine()=="yes");
 } while playAgain
-
+//ANSI sequence where \u{001B} is ESCAPE and [2J is clear screen.
 func clearScreen(){
     print("\u{001B}[2J");
 }
