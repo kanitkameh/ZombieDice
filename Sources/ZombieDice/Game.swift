@@ -1,35 +1,34 @@
 import Foundation
 class Game{
-    var playerNames:[String];
-    var playerScores:[String:Int];
+    var players: [Player] = [];
 
-    init(_playerNames:[String]){
-        playerNames = _playerNames;
-        playerScores = [:];
-        resetScores();
+    init(playerNames:[String]){
+        for playerName in playerNames {
+           players.append(Player(name: playerName));
+        }
     }
     func getScoreTable() -> String{
         var result = "Scores:\n";
-        for name in playerNames {
-            result += ("\(name) has \(playerScores[name] ?? 0) points\n")
+        for player in players {
+            result += ("\(player.name) has \(player.score ?? 0) points\n")
         }
         return result;
     }
 
     func resetScores(){
-        for name in playerNames{
-            playerScores[name] = 0;
+        for player in players{
+            player.score = 0;
         }
     }
     func beginGame(){
         resetScores();
-        while Array(playerScores.values).contains(13) == false{
-            for player in playerNames {
-                print("\(player) is on turn");
+        while players.map({$0.score}).contains(13) == false{
+            for player in players {
+                print("\(player.name) is on turn");
                 playerTurn(player:player);                
-                print("\(player)'s turn is over'");
-                if(playerScores[player] ?? 0 >= 13){
-                    print("\(player) has won the game")
+                print("\(player.name)'s turn is over'");
+                if(player.score >= 13){
+                    print("\(player.name) has won the game")
                     print(getScoreTable());
                     return;
                 }
@@ -40,7 +39,7 @@ class Game{
         }
         
     }
-    func playerTurn(player: String){
+    func playerTurn(player: Player){
         var turn : Turn = Turn();
         print(getScoreTable());
         var anotherRoll : Bool;
@@ -54,6 +53,6 @@ class Game{
             print("Do you want to draw 3 more dice?(yes/no)")
             anotherRoll = (readLine() == "yes"); 
         } while (anotherRoll && !turn.pool.isEmpty())
-        playerScores[player] = (playerScores[player] ?? 0) + turn.turnScore;
+        player.score += turn.turnScore;
     }
 }
