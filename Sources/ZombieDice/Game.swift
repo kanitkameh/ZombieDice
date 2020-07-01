@@ -10,7 +10,7 @@ class Game{
     func getScoreTable() -> String{
         var result = "Scores:\n";
         for player in players {
-            result += ("\(player.name) has \(player.score ?? 0) points\n")
+            result += ("\(player.name) has \(player.score) points\n")
         }
         return result;
     }
